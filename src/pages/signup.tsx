@@ -12,7 +12,7 @@ const Signup = () => {
   const [subject, setSubject] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (event: any) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     // Process the form data or send it to the server
@@ -121,6 +121,10 @@ const Signup = () => {
               >
                 <option value="1">1</option>
                 <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
                 {/* Add other semesters as needed */}
               </select>
             </div>

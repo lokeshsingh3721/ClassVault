@@ -7,7 +7,7 @@ const Login = () => {
 
   const router = useRouter();
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     // Process the login logic or send data to the server
