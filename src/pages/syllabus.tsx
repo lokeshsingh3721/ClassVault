@@ -3,13 +3,16 @@ import React from "react";
 
 export default function syllabus() {
   return (
-    <div className="mt-32 flex flex-col gap-5 justify-center items-center">
-      <h1 className="text-2xl underline ">Syllabus</h1>
-
-      <Card title="Web Designing" />
-      <Card title="E-Commerce" />
-      <Card title="Software Engineering" />
-      <Card title="Object Oriented Programming" />
-    </div>
+    <>
+      <h1 className="text-2xl underline mt-32 mb-10 text-center italic ">
+        Syllabus
+      </h1>
+      <div className=" flex flex-col sm:flex-row sm:flex-wrap sm:gap-7  gap-5 justify-center items-center">
+        <Card title="Syllabus" subject="Web Designing" />
+        <Card title="Syllabus" subject="E-Commerce" />
+        <Card title="Syllabus" subject="Software Engineering" />
+        <Card title="Syllabus" subject="Object Oriented Programming" />
+      </div>
+    </>
   );
 }

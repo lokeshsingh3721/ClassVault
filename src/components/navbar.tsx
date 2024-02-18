@@ -79,7 +79,13 @@ export default function Navbar() {
       </div>
       <div className="  flex-row gap-6 hidden sm:flex ">
         <p className="cursor-pointer">
-          <Link href={"/resources"}>Resources</Link>
+          <Link href={"/notes"}>Notes</Link>
+        </p>
+        <p className="cursor-pointer">
+          <Link href={"/syllabus"}>Syllabus</Link>
+        </p>
+        <p className="cursor-pointer">
+          <Link href={"/assignment"}>Asssignmet</Link>
         </p>
         <p className="cursor-pointer mr-4 ">
           <Link href={"/login"}>Login</Link>
