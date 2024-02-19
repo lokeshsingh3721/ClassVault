@@ -82,6 +82,22 @@ const Signup = () => {
             {/* Add other colleges as needed */}
           </select>
         </div>
+        <div className="mb-4">
+          <label className="block text-sm font-semibold mb-2">Semester</label>
+          <select
+            className="border p-2 w-full"
+            value={semester}
+            onChange={(e) => setSemester(e.target.value)}
+          >
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            {/* Add other semesters as needed */}
+          </select>
+        </div>
 
         {userType === "student" && (
           <>
@@ -107,25 +123,6 @@ const Signup = () => {
               >
                 <option value="BCA">BCA</option>
                 {/* Add other courses as needed */}
-              </select>
-            </div>
-
-            <div className="mb-4">
-              <label className="block text-sm font-semibold mb-2">
-                Semester
-              </label>
-              <select
-                className="border p-2 w-full"
-                value={semester}
-                onChange={(e) => setSemester(e.target.value)}
-              >
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                {/* Add other semesters as needed */}
               </select>
             </div>
           </>

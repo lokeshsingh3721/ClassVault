@@ -1,11 +1,9 @@
 import axios from "axios";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
-import assignment from "./assignment";
-import notes from "./notes";
 
 export default function Upload() {
-  const [category, setCategory] = useState("");
+  const [category, setCategory] = useState("Notes");
   const [uploading, setUploading] = useState(false);
   const [selectedFile, setSelectedFile] = useState<File>();
   const router = useRouter();
@@ -13,10 +11,15 @@ export default function Upload() {
   const handleUpload = async () => {
     setUploading(true);
     try {
-      if (!selectedFile) return;
+      if (!selectedFile) {
+        alert("please select the file ");
+        setUploading(false);
+        return;
+      }
       const formData = new FormData();
       formData.append(category, selectedFile);
       const { data } = await axios.post("/api/upload", formData);
+      router.push(`/${category.toLowerCase()}`);
       console.log(data);
     } catch (error: any) {
       console.log(error.response?.data);
@@ -51,7 +54,7 @@ export default function Upload() {
           id="category"
           value={category}
           onChange={(e) => {
-            setCategory(e.target.value);
+            setCategory(() => e.target.value);
           }}
         >
           <option value="Notes">Notes</option>
