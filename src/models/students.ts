@@ -36,4 +36,5 @@ const schema = new mongoose.Schema({
   },
 });
 
-export const Student = mongoose.model("Student", schema);
+export const Student =
+  mongoose.models.Student ?? mongoose.model("Student", schema);

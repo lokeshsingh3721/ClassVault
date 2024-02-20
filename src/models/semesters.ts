@@ -8,4 +8,5 @@ const schema = new mongoose.Schema({
   },
 });
 
-export const Semester = mongoose.model("Semester", schema);
+export const Semester =
+  mongoose.models.Semester ?? mongoose.model("Semester", schema);

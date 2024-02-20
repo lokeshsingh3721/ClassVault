@@ -14,3 +14,15 @@ interface GetId {
   _id: ObjectId;
   name: string;
 }
+
+interface SignUp {
+  userType?: string;
+  name: string;
+  email: string;
+  college: string;
+  collegeRollNo?: string;
+  course: string;
+  semester: string;
+  subject?: string;
+  password: string;
+}

@@ -8,4 +8,5 @@ const schema = new mongoose.Schema({
   },
 });
 
-export const Course = mongoose.model("Course", schema);
+export const Course =
+  mongoose.models.Course ?? mongoose.model("Course", schema);

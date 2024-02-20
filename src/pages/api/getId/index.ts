@@ -41,8 +41,6 @@ const handler: NextApiHandler = async (req, res) => {
       }
     }
 
-    console.log(data);
-
     if (data.length === 0) {
       return res.json({
         success: false,

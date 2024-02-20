@@ -36,4 +36,5 @@ const schema = new mongoose.Schema({
   },
 });
 
-export const Teacher = mongoose.model("Teacher", schema);
+export const Teacher =
+  mongoose.models.Teacher ?? mongoose.model("Teacher", schema);

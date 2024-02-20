@@ -7,4 +7,5 @@ const schema = new mongoose.Schema({
     unique: true,
   },
 });
-export const College = mongoose.model("College", schema);
+export const College =
+  mongoose.models.College ?? mongoose.model("College", schema);

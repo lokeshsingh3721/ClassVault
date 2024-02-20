@@ -1,9 +1,15 @@
 import { NextApiHandler } from "next";
-import { Student, Subject } from "../../../../models/index";
+import { Student, Teacher } from "../../../../models/index";
 
 const handler: NextApiHandler = async (req, res) => {
-  // const data = await Student.create(req.body);
-  const data = await Student.create(req.body);
+  let data: SignUp;
+  if (req.body.userType === "student") {
+    delete req.body.userType;
+    data = await Student.create(req.body);
+  } else {
+    delete req.body.userType;
+    data = await Teacher.create(req.body);
+  }
 
   res.json({
     done: "signup",

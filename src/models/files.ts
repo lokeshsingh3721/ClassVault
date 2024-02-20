@@ -8,4 +8,4 @@ const schema = new mongoose.Schema({
   },
 });
 
-export const Files = mongoose.model("Files", schema);
+export const Files = mongoose.models.Files ?? mongoose.model("Files", schema);

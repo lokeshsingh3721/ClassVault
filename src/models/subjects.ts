@@ -8,4 +8,5 @@ const schema = new mongoose.Schema({
   },
 });
 
-export const Subject = mongoose.model("Subject", schema);
+export const Subject =
+  mongoose.models.Subject ?? mongoose.model("Subject", schema);

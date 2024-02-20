@@ -1,5 +1,6 @@
 import router from "next/router";
 import React, { useState } from "react";
+import signupHandler from "./api/lib/signupHandler";
 
 const Signup = () => {
   const [userType, setUserType] = useState("student");
@@ -9,14 +10,13 @@ const Signup = () => {
   const [collegeRollNo, setCollegeRollNo] = useState("");
   const [course, setCourse] = useState("BCA");
   const [semester, setSemester] = useState("");
-  const [subject, setSubject] = useState("");
+  const [subject, setSubject] = useState("Web Designing");
   const [password, setPassword] = useState("");
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    // Process the form data or send it to the server
-    console.log({
+    signupHandler({
       userType,
       name,
       email,
@@ -27,6 +27,16 @@ const Signup = () => {
       subject,
       password,
     });
+
+    setUserType("student");
+    setName("");
+    setEmail("");
+    setCollege("EIT");
+    setCollegeRollNo("");
+    setCourse("");
+    setSemester("");
+    setSubject("Web Designing");
+    setPassword("");
   };
 
   return (
