@@ -3,60 +3,62 @@ import { NextApiHandler } from "next";
 import { Student, Teacher } from "../../../../../src/models/index";
 
 const handler: NextApiHandler = async (req, res) => {
-  if (req.body.userType === "student") {
-    const student = await Student.find({
-      username: req.body.email,
+  const body: Login = req.body;
+
+  if (body.userType === "student") {
+    const data = await Student.find({
+      username: body.email,
     });
 
-    if (student.length == 0) {
+    if (data.length == 0) {
       return res.json({
         success: false,
         message: "user doesn't exist ",
-        student,
+        data,
       });
     }
 
-    const originalPass = student[0].password;
+    const originalPass = data[0].password;
 
-    if (originalPass != req.body.password) {
+    if (originalPass != body.password) {
       return res.json({
         success: false,
         message: "invalid username/password",
-        student,
+        data,
       });
     }
     return res.json({
       success: true,
       message: "login success",
-      student,
+      data,
     });
   }
-  if (req.body.userType === "teacher") {
-    const teacher = await Teacher.find({
-      username: req.body.email,
+  if (body.userType === "teacher") {
+    const data = await Teacher.find({
+      username: body.email,
     });
 
-    if (teacher.length == 0) {
+    if (data.length == 0) {
       return res.json({
         success: false,
         message: "user doesn't exist ",
-        teacher,
+        data,
       });
     }
 
-    const originalPass = teacher[0].password;
+    const originalPass = data[0].password;
 
-    if (originalPass != req.body.password) {
+    if (originalPass != body.password) {
       return res.json({
         success: false,
         message: "invalid username/password",
-        teacher,
+        data,
       });
     }
     return res.json({
       success: true,
       message: "login success",
-      teacher,
+      data,
     });
   }
 };

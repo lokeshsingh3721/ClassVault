@@ -1,11 +1,14 @@
 import React, { useState } from "react";
-import Router, { useRouter } from "next/router";
+import { useRouter } from "next/router";
 import loginHandler from "./api/lib/loginHandler";
+import { atomUserData } from "@/store/atomUserData";
+import { useSetRecoilState } from "recoil";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [userType, setUserType] = useState("student");
+  const setUserDetails = useSetRecoilState(atomUserData);
 
   const router = useRouter();
 
@@ -13,6 +16,10 @@ const Login = () => {
     event.preventDefault();
     const data = await loginHandler({ email, password, userType });
     if (data.success) {
+      setEmail("");
+      setPassword("");
+      console.log(data);
+      setUserDetails({ name: data.data[0].name });
       return router.push("/");
     }
 

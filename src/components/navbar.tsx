@@ -6,12 +6,19 @@ import { FaBook, FaPen, FaHome } from "react-icons/fa";
 import { MdAssignmentReturned } from "react-icons/md";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { MdClose } from "react-icons/md";
+import { atomUserData } from "@/store/atomUserData";
+import { useRecoilValue } from "recoil";
 
 export default function Navbar() {
   const [menuOpen, isMenuOpen] = useState(false);
+  const userDetails = useRecoilValue(atomUserData);
 
   function menuHandler() {
     isMenuOpen(() => !menuOpen);
+  }
+
+  function logoutHandler() {
+    //clear the cookies
   }
 
   return (
@@ -87,13 +94,42 @@ export default function Navbar() {
         <p className="cursor-pointer">
           <Link href={"/assignment"}>Asssignmet</Link>
         </p>
-        <p className="cursor-pointer mr-4 ">
-          <Link href={"/login"}>Login</Link>
-        </p>
+        <div className=" mr-4 flex flex-row  gap-5 ">
+          <p
+            className={`w-10 text-xl h-auto rounded-full bg-primaryDark text-white text-center py-1 ${
+              userDetails.name ? "inline-block" : "hidden"
+            } `}
+          >{`${userDetails.name ? userDetails.name[0] : ""}`}</p>
+          <Link
+            className={`cursor-pointer ${userDetails.name ? "hidden" : ""} `}
+            href={"/login"}
+          >
+            Login
+          </Link>
+          <button
+            className={`${userDetails.name ? "inline-block" : "hidden"} `}
+          >
+            logout
+          </button>
+        </div>
+        {/* mobile section  */}
       </div>
-      <p className="sm:hidden cursor-pointer mr-2 ">
-        <Link href={"/login"}>Login</Link>
-      </p>
+      <div className="sm:hidden flex flex-row gap-3 mr-2 ">
+        <p
+          className={`w-10 text-xl h-auto rounded-full bg-primaryDark text-white text-center py-1 ${
+            userDetails.name ? "inline-block" : "hidden"
+          } `}
+        >{`${userDetails.name ? userDetails.name[0] : ""}`}</p>
+        <Link
+          className={`cursor-pointer ${userDetails.name ? "hidden" : ""} `}
+          href={"/login"}
+        >
+          Login
+        </Link>
+        <button className={`${userDetails.name ? "inline-block" : "hidden"} `}>
+          logout
+        </button>
+      </div>
     </nav>
   );
 }

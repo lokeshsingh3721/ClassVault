@@ -1,6 +1,8 @@
 import router, { useRouter } from "next/router";
 import React, { useState } from "react";
 import signupHandler from "./api/lib/signupHandler";
+import { useSetRecoilState } from "recoil";
+import { atomUserData } from "@/store/atomUserData";
 
 const Signup = () => {
   const [userType, setUserType] = useState("student");
@@ -12,6 +14,7 @@ const Signup = () => {
   const [semester, setSemester] = useState("");
   const [subject, setSubject] = useState("Web Designing");
   const [password, setPassword] = useState("");
+  const setUserDetails = useSetRecoilState(atomUserData);
   const router = useRouter();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -30,6 +33,16 @@ const Signup = () => {
     });
 
     if (data.success) {
+      setUserDetails({ name: data.data.name });
+      setUserType("student");
+      setName("");
+      setEmail("");
+      setCollege("EIT");
+      setCollegeRollNo("");
+      setCourse("BCA");
+      setSemester("");
+      setSubject("Web Designing");
+      setPassword("");
       return router.push("/");
     }
 
