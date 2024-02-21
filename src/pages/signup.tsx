@@ -1,4 +1,4 @@
-import router from "next/router";
+import router, { useRouter } from "next/router";
 import React, { useState } from "react";
 import signupHandler from "./api/lib/signupHandler";
 
@@ -12,11 +12,12 @@ const Signup = () => {
   const [semester, setSemester] = useState("");
   const [subject, setSubject] = useState("Web Designing");
   const [password, setPassword] = useState("");
+  const router = useRouter();
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    signupHandler({
+    const data = await signupHandler({
       userType,
       name,
       email,
@@ -28,15 +29,11 @@ const Signup = () => {
       password,
     });
 
-    setUserType("student");
-    setName("");
-    setEmail("");
-    setCollege("EIT");
-    setCollegeRollNo("");
-    setCourse("");
-    setSemester("");
-    setSubject("Web Designing");
-    setPassword("");
+    if (data.success) {
+      return router.push("/");
+    }
+
+    alert(data.message);
   };
 
   return (

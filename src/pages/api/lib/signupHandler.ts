@@ -82,8 +82,7 @@ async function signupHandler({
         },
         body: JSON.stringify(data),
       });
-      // set the state
-      const teacherDetails = await res.json();
+      return res.json();
     }
   } catch (error) {
     if (error instanceof Error) {

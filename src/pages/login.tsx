@@ -1,17 +1,22 @@
 import React, { useState } from "react";
 import Router, { useRouter } from "next/router";
+import loginHandler from "./api/lib/loginHandler";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [userType, setUserType] = useState("student");
 
   const router = useRouter();
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const data = await loginHandler({ email, password, userType });
+    if (data.success) {
+      return router.push("/");
+    }
 
-    // Process the login logic or send data to the server
-    console.log({ email, password });
+    alert(data.message);
   };
 
   return (
@@ -21,6 +26,18 @@ const Login = () => {
         className="max-w-md mx-auto bg-white p-8 rounded-md shadow-md"
       >
         <h2 className="text-2xl text-center font-bold mb-4">Login</h2>
+
+        <div className="mb-4">
+          <label className="block text-sm font-semibold mb-2">User Type</label>
+          <select
+            className="border p-2 w-full"
+            value={userType}
+            onChange={(e) => setUserType(e.target.value)}
+          >
+            <option value="student">Student</option>
+            <option value="teacher">Teacher</option>
+          </select>
+        </div>
 
         <div className="mb-4">
           <label className="block text-sm font-semibold mb-2">Email</label>

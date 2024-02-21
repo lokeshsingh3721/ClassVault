@@ -26,3 +26,9 @@ interface SignUp {
   subject?: string;
   password: string;
 }
+
+interface Login {
+  email: string;
+  password: string;
+  userType: string;
+}
