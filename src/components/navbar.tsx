@@ -8,17 +8,19 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { MdClose } from "react-icons/md";
 import { atomUserData } from "@/store/atomUserData";
 import { useRecoilValue } from "recoil";
+import { useRouter } from "next/router";
 
 export default function Navbar() {
   const [menuOpen, isMenuOpen] = useState(false);
   const userDetails = useRecoilValue(atomUserData);
+  const router = useRouter();
 
   function menuHandler() {
     isMenuOpen(() => !menuOpen);
   }
 
   function logoutHandler() {
-    //clear the cookies
+    router.push("/login");
   }
 
   return (
@@ -107,6 +109,7 @@ export default function Navbar() {
             Login
           </Link>
           <button
+            onClick={() => logoutHandler()}
             className={`${userDetails.name ? "inline-block" : "hidden"} `}
           >
             logout
