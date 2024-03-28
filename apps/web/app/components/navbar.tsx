@@ -10,9 +10,16 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { MdClose } from "react-icons/md";
 import { useRouter } from "next/navigation";
 
+import {
+  RegisterLink,
+  LoginLink,
+  LogoutLink,
+} from "@kinde-oss/kinde-auth-nextjs/components";
+import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
+
 export default function Navbar() {
   const [menuOpen, isMenuOpen] = useState(false);
-  // const userDetails = useRecoilValue(atomUserData);
+  const { user } = useKindeBrowserClient();
   const router = useRouter();
 
   function menuHandler() {
@@ -24,10 +31,6 @@ export default function Navbar() {
   }
 
   // sample
-
-  const userDetails = {
-    name: "demo",
-  };
 
   return (
     <nav className="w-full border-2 flex flex-row justify-between py-4 bg-white fixed top-0 z-10">
@@ -105,39 +108,40 @@ export default function Navbar() {
         <div className=" mr-4 flex flex-row  gap-5 ">
           <p
             className={`w-10 text-xl h-auto rounded-full bg-primaryDark text-white text-center py-1 ${
-              userDetails.name ? "inline-block" : "hidden"
+              user?.email ? "inline-block" : "hidden"
             } `}
-          >{`${userDetails.name ? userDetails.name[0] : ""}`}</p>
-          <Link
-            className={`cursor-pointer ${userDetails.name ? "hidden" : ""} `}
-            href={"/login"}
+          >{`${user?.email ? user.email[0] : ""}`}</p>
+          <RegisterLink
+            className={`${user?.email ? "hidden" : "inline-block"}`}
           >
+            Signup
+          </RegisterLink>
+          <LoginLink className={`${user?.email ? "hidden" : "inline-block"}`}>
             Login
-          </Link>
-          <button
-            onClick={() => logoutHandler()}
-            className={`${userDetails.name ? "inline-block" : "hidden"} `}
-          >
-            logout
-          </button>
+          </LoginLink>
+          <LogoutLink className={`${user?.email ? "inline-block" : "hidden"}`}>
+            Logout
+          </LogoutLink>
         </div>
         {/* mobile section  */}
       </div>
       <div className="sm:hidden flex flex-row gap-3 mr-2 ">
         <p
           className={`w-10 text-xl h-auto rounded-full bg-primaryDark text-white text-center py-1 ${
-            userDetails.name ? "inline-block" : "hidden"
+            user?.email ? "inline-block" : "hidden"
           } `}
-        >{`${userDetails.name ? userDetails.name[0] : ""}`}</p>
-        <Link
-          className={`cursor-pointer ${userDetails.name ? "hidden" : ""} `}
-          href={"/login"}
-        >
+        >{`${user?.email ? user.email[0] : ""}`}</p>
+        <LoginLink className={`cursor-pointer ${user?.email ? "hidden" : ""} `}>
           Login
-        </Link>
-        <button className={`${userDetails.name ? "inline-block" : "hidden"} `}>
+        </LoginLink>
+        <RegisterLink
+          className={`cursor-pointer ${user?.email ? "hidden" : ""} `}
+        >
+          Signup
+        </RegisterLink>
+        <LogoutLink className={`${user?.email ? "inline-block" : "hidden"} `}>
           logout
-        </button>
+        </LogoutLink>
       </div>
     </nav>
   );
