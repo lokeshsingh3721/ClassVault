@@ -112,6 +112,7 @@ export default function Navbar() {
             } `}
           >{`${user?.email ? user.email[0] : ""}`}</p>
           <RegisterLink
+            postLoginRedirectURL="/register"
             className={`${user?.email ? "hidden" : "inline-block"}`}
           >
             Signup
@@ -135,6 +136,7 @@ export default function Navbar() {
           Login
         </LoginLink>
         <RegisterLink
+          postLoginRedirectURL="/register"
           className={`cursor-pointer ${user?.email ? "hidden" : ""} `}
         >
           Signup
