@@ -33,8 +33,8 @@ export default function Navbar() {
   // sample
 
   return (
-    <nav className="w-full border-2 flex flex-row justify-between py-4 bg-white fixed top-0 z-10">
-      <div className="flex flex-row gap-4 justify-baseline items-baseline ">
+    <nav className="w-full border-2 flex  justify-between px-4 py-2 bg-white fixed top-0 z-10">
+      <div className="flex flex-row gap-4 items-center ">
         <div>
           <p
             onClick={() => menuHandler()}
@@ -88,14 +88,15 @@ export default function Navbar() {
             </Link>
           </ul>
         </div>
-        <Link className="text-primaryDark" href={"/"}>
+        <Link className="text-primaryDark text-center " href={"/"}>
           ClassVault
         </Link>
-        <p className="cursor-pointer">
+        <p className="cursor-pointer items-center">
           <Link href={"/contact"}>Contact</Link>
         </p>
       </div>
-      <div className="  flex-row gap-6 hidden sm:flex ">
+
+      <div className=" text-center flex-row gap-6 items-center hidden sm:flex ">
         <p className="cursor-pointer">
           <Link href={"/notes"}>Notes</Link>
         </p>
@@ -105,9 +106,9 @@ export default function Navbar() {
         <p className="cursor-pointer">
           <Link href={"/assignment"}>Asssignmet</Link>
         </p>
-        <div className=" mr-4 flex flex-row  gap-5 ">
+        <div className=" mr-4 my-px flex flex-row  gap-5 items-center ">
           <p
-            className={`w-10 text-xl h-auto rounded-full bg-primaryDark text-white text-center py-1 ${
+            className={`w-10 h-10 text-xl  rounded-full object-cover bg-red-400 text-white text-center py-1  ${
               user?.email ? "inline-block" : "hidden"
             } `}
           >{`${user?.email ? user.email[0] : ""}`}</p>

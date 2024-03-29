@@ -1,4 +1,4 @@
-// File: /Users/lokiislazy/Desktop/ClassVault/apps/web/app/api/auth/[kindeAuth]/route.ts
+// File: C:\Users\Lenovo\OneDrive\Documents\ClassVault\apps\web\app\api\auth\[kindeAuth]\route.ts
 import * as entry from '../../../../../../app/api/auth/[kindeAuth]/route.js'
 import type { NextRequest } from 'next/server.js'
 
