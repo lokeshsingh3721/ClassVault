@@ -108,7 +108,7 @@ export default function Navbar() {
         </p>
         <div className=" mr-4 my-px flex flex-row  gap-5 items-center ">
           <p
-            className={`w-10 h-auto text-xl  rounded-full object-cover bg-red-400 text-white text-center py-1  ${
+            className={`w-10 h-10 text-xl  rounded-full object-cover bg-red-400 text-white text-center py-1  ${
               user?.email ? "inline-block" : "hidden"
             } `}
           >{`${user?.email ? user.email[0] : ""}`}</p>
