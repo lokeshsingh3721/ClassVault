@@ -14,11 +14,46 @@ datasource db {
 }
 
 model User {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String   @unique
+  roll_no   Int?     @unique
+  semester Semester @relation(fields: [semesterId], references: [id])
+  semesterId Int
+  course    Course  @relation(fields: [courseId], references: [id])
+  courseId  Int
+  role      role     @default(STUDENT)
+  created_at DateTime @default(now())
+}
 
-  id      Int      @id @default(autoincrement())
+model Course {
+  id          Int      @id @default(autoincrement())
+  course_name String  @unique
+  user User[]
+  url Url[]
+}
 
-  email   String   @unique
+model Semester {
+  id        Int      @id @default(autoincrement())
+  semester  String  @unique
+  user User[]
+  url Url[]
+}
 
-  name    String?
+model Url {
+  id         Int      @id @default(autoincrement())
+  url        String
+  course     Course  @relation(fields: [courseId], references: [id])
 
+  courseId   Int
+  semester   Semester @relation(fields: [semesterId], references: [id])
+
+  semesterId Int
+  owner      String
+  created_at DateTime @default(now())
+}
+
+enum role {
+  TEACHER
+  STUDENT
 }
