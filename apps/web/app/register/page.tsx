@@ -1,5 +1,6 @@
 "use client";
 
+import { PrismaClient } from "@repo/db/client";
 import router from "next/router";
 import React, { useState } from "react";
 
