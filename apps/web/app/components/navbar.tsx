@@ -33,8 +33,8 @@ export default function Navbar() {
   // sample
 
   return (
-    <nav className="w-full border-2 flex flex-row justify-between py-4 bg-white fixed top-0 z-10">
-      <div className="flex flex-row gap-4 justify-baseline items-baseline ">
+    <nav className="w-full border-2 flex flex-row justify-between px-4 py-2 bg-white fixed top-0 z-10">
+      <div className="flex flex-row gap-4 items-center">
         <div>
           <p
             onClick={() => menuHandler()}
@@ -95,7 +95,7 @@ export default function Navbar() {
           <Link href={"/contact"}>Contact</Link>
         </p>
       </div>
-      <div className="  flex-row gap-6 hidden sm:flex ">
+      <div className="  flex-row gap-6 hidden sm:flex items-center">
         <p className="cursor-pointer">
           <Link href={"/notes"}>Notes</Link>
         </p>
@@ -105,9 +105,9 @@ export default function Navbar() {
         <p className="cursor-pointer">
           <Link href={"/assignment"}>Asssignmet</Link>
         </p>
-        <div className=" mr-4 flex flex-row  gap-5 ">
+        <div className=" mr-4 flex flex-row  gap-5 items-center">
           <p
-            className={`w-10 text-xl h-auto rounded-full bg-primaryDark text-white text-center py-1 ${
+            className={`w-10 text-xl h-10 rounded-full bg-primaryDark text-white text-center py-1 items-center ${
               user?.email ? "inline-block" : "hidden"
             } `}
           >{`${user?.email ? user.email[0] : ""}`}</p>
@@ -117,7 +117,7 @@ export default function Navbar() {
           >
             Signup
           </RegisterLink>
-          <LoginLink className={`${user?.email ? "hidden" : "inline-block"}`}>
+          <LoginLink className={`${user?.email ? "hidden" : "inline-block "}`}>
             Login
           </LoginLink>
           <LogoutLink className={`${user?.email ? "inline-block" : "hidden"}`}>
@@ -141,7 +141,7 @@ export default function Navbar() {
         >
           Signup
         </RegisterLink>
-        <LogoutLink className={`${user?.email ? "inline-block" : "hidden"} `}>
+        <LogoutLink className={`${user?.email ? "inline-block" : "hidden "} `}>
           logout
         </LogoutLink>
       </div>
